@@ -131,9 +131,15 @@ body {
 
     &:last-child {
       transform: rotate(1deg);
+      box-shadow:
+        -8px 8px 0 #d62828,
+        -14px 14px 0 #111;
 
       &:hover {
         transform: rotate(1deg) translateY(-4px);
+        box-shadow:
+          -10px 10px 0 #e63946,
+          -18px 18px 0 #111;
       }
     }
 
