@@ -1,0 +1,204 @@
+@font-face {
+  font-family: "Act Of Rejection";
+  src: url("fonts/Act_Of_Rejection.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  box-sizing: border-box;
+  --hover-color: #d62828;
+  --title-color: #1c1c1f;
+  --versus-color: #1c1c1f;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  font-family: "Act Of Rejection", sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  .title {
+      color: var(--title-color);
+      font-size: 10rem;
+      text-shadow: 4px 4px 0 #d62828, 8px 8px 0 #000;
+  }
+
+  .card-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .versus-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+
+    .versus {
+      font-size: 6rem;
+      font-weight: 700;
+      color: var(--versus-color);
+      text-shadow: 4px 4px 0 #d62828, 8px 8px 0 #000;
+    }
+
+    .start-game {
+      appearance: none;
+      border: 0;
+      background: linear-gradient(180deg, #2a2a2e 0%, #111 52%, #d62828 100%);
+      color: #f8f8f8;
+      font-family: inherit;
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
+      padding: 0.7rem 1.2rem;
+      cursor: pointer;
+      transform: skewX(-10deg) rotate(-2deg);
+      box-shadow:
+        4px 4px 0 #d62828,
+        7px 7px 0 #000;
+      transition:
+        transform 160ms ease,
+        box-shadow 160ms ease,
+        filter 160ms ease;
+
+      &:hover {
+        filter: saturate(1.15);
+        color: #ff4d4d;
+        transform: skewX(-10deg) rotate(-2deg) translateY(-2px) scale(1.05);
+        box-shadow:
+          5px 5px 0 #e63946,
+          9px 9px 0 #000;
+      }
+
+      &:active {
+        transform: skewX(-10deg) rotate(-2deg) translate(3px, 3px) scale(0.98);
+        box-shadow:
+          2px 2px 0 #d62828,
+          4px 4px 0 #000;
+      }
+
+      &:focus-visible {
+        outline: 3px solid #d62828;
+        outline-offset: 5px;
+      }
+    }
+
+  }
+
+  .card-player {
+    width: min(100%, 350px);
+    border-radius: 20px;
+    overflow: hidden;
+    background: #f8f8f8;
+    border: 2px solid #111;
+    box-shadow:
+      8px 8px 0 #d62828,
+      14px 14px 0 #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: rotate(-1deg);
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease;
+
+    &:hover {
+      transform: rotate(-1deg) translateY(-4px);
+      box-shadow:
+        10px 10px 0 #e63946,
+        18px 18px 0 #111;
+    }
+
+    &:last-child {
+      transform: rotate(1deg);
+
+      &:hover {
+        transform: rotate(1deg) translateY(-4px);
+      }
+    }
+
+    .player-mark, .bot-difficulty, .player-name {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      color: inherit;
+
+      &:hover, &.is-selected {
+        color: var(--hover-color);
+      }
+    }
+
+    .player-mark {
+      font-weight: 700;
+      font-size: 2rem;
+      margin-top: 5px;
+    }
+
+    .avatar {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .card-bottom {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+
+      .player-name, .bot-difficulty {
+        font-size: 1.5rem;
+        font-weight: 700;
+        flex: 1;
+        transition: flex 200ms ease;
+        line-height: 2;
+
+        &:hover, &:active, &.is-selected {
+          flex: 2;
+        }
+      }
+
+      .player-name {
+        &:hover, &:active, &.is-selected {
+          border-right: 1px solid #dcdcdc;
+          box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.12);
+        }
+      }
+
+      .bot-difficulty {
+        &:hover, &:active, &.is-selected {
+          border-left: 1px solid #dcdcdc;
+          box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.12);
+        }
+      }
+
+
+
+    }
+
+
+    
+  }
+
+}
