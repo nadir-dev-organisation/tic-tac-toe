@@ -166,6 +166,22 @@ body {
       height: auto;
       object-fit: contain;
       display: block;
+      transition: 
+        opacity 320ms ease, 
+        transform 320ms ease,
+        filter 320ms ease;
+
+      &.is-changing {
+        opacity: 0;
+        transform: translateX(-14px) scale(0.94) rotate(-2deg);
+        filter: blur(4px);
+      }
+
+      &.is-entering {
+        opacity: 0;
+        transform:: translateX(14px) scale(0.94) rotate(2deg);
+        filter: blur(4px);
+      }
     }
 
     .card-bottom {
