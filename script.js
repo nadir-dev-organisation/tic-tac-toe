@@ -73,8 +73,56 @@ function toggleBotDifficulty(botButton) {
 
 }
 
-function togglePlayerNameInput(playerButton, botButton) {
-  toggleBotDifficulty(botButton);
+function handlePlayerNameClick(event) {
+  const playerButton = event.currentTarget;
+  const wasSelected = playerButton.classList.contains("is-selected");
+  const botButton = playerButton.nextElementSibling;
+  if (!wasSelected) {
+    toggleSelected(playerButton, botButton);
+    toggleAvatar(playerButton);
+    toggleBotDifficulty(botButton);
+    return;
+  }
+  editPlayerName(playerButton);
+}
+
+function editPlayerName(playerButton) {
+  const input = document.createElement("input");
+
+  input.className = playerButton.className;
+  input.classList.add("player-name-input");
+  input.type = "text";
+  input.value = playerButton.textContent.trim();
+
+  playerButton.replaceWith(input);
+  input.focus();
+  input.select();
+
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      input.value = "Player".toUpperCase();
+      replaceInputWithButton(input);
+    } else if (event.key === "Enter") {
+      replaceInputWithButton(input);
+    }
+  });
+
+  input.addEventListener("blur", () => {
+    replaceInputWithButton(input);
+  });
+}
+
+function replaceInputWithButton(input) {
+  if (!input.isConnected) return;
+
+  const newPlayerButton = document.createElement("button");
+
+  newPlayerButton.className = input.className.replace("player-name-input", "").trim();
+  newPlayerButton.type = "button";
+  newPlayerButton.textContent = input.value.trim() || "Player".toUpperCase();
+
+  input.replaceWith(newPlayerButton);
+  newPlayerButton.addEventListener("click", handlePlayerNameClick);
 }
 
 function setupEventListener(){
@@ -85,14 +133,7 @@ function setupEventListener(){
     toggleMark(event.currentTarget, crossMarkBtn);
   });
   playerNameBtn.forEach((playerButton) => {
-    playerButton.addEventListener("click", (event) => {
-      const wasSelected = event.currentTarget.classList.contains("is-selected");
-      if (!wasSelected) {
-        toggleSelected(event.currentTarget, event.currentTarget.nextElementSibling);
-        toggleAvatar(event.currentTarget);
-      }
-      togglePlayerNameInput(event.currentTarget, event.currentTarget.nextElementSibling);
-    });
+    playerButton.addEventListener("click", handlePlayerNameClick);
   });
   botDifficultyBtn.forEach((botButton) => {
     botButton.addEventListener("click", (event) => {
