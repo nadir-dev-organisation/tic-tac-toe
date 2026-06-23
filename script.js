@@ -7,10 +7,19 @@ const botDifficulties = ["BOT","EASY", "HARD", "IMPOSSIBLE"];
 const rightCard = document.querySelector(".right-card");
 const rightCardBotBtn = rightCard.querySelector(".bot-difficulty");
 
+const startGameBtn = document.querySelector(".start-game");
+const cardContainer = document.querySelector(".card-container");
+
+function showStartGameButton(delay = 500) {
+  setTimeout(() => {
+    startGameBtn.classList.remove("is-hidden");
+    cardContainer.classList.add("has-start-game");
+  }, delay);
+}
+
 if (rightCardBotBtn.classList.contains("is-selected")) {
   rightCardBotBtn.textContent = botDifficulties[1].toUpperCase();
 }
-
 
 function toggleMark(markButton, secondMarkButton){
   markButton.textContent = markButton.textContent.trim() === "X" ? "O" : "X";
@@ -148,3 +157,4 @@ function setupEventListener(){
 }
 
 setupEventListener();
+showStartGameButton();

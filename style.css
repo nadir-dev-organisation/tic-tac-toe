@@ -34,7 +34,6 @@ body {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border: 1px solid red;
 
   .title {
       color: var(--title-color);
@@ -45,12 +44,19 @@ body {
   .card-container {
     width: min(100%, 1100px);
     display: grid;
-    grid-template-columns: 350px 180px 350px;
+    grid-template-columns: 350px 50px 350px;
     grid-template-areas: "left versus right";
     align-items: center;
     justify-content: center;
     column-gap: 5rem;
-    border: 1px solid blue;
+    transition: 
+      grid-template-columns 300ms ease,
+      column-gap 300ms ease;
+
+    &.has-start-game {
+      grid-template-columns: 350px 180px 350px;
+      column-gap: 5rem;
+    }
   }
 
   .left-card {
@@ -90,9 +96,10 @@ body {
         4px 4px 0 #d62828,
         7px 7px 0 #000;
       transition:
-        transform 160ms ease,
-        box-shadow 160ms ease,
-        filter 160ms ease;
+        opacity 250ms ease,
+        transform 250ms ease,
+        box-shadow 250ms ease,
+        filter 250ms ease;
 
       &.is-hidden {
         opacity: 0;
