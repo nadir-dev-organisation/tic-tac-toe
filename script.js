@@ -2,6 +2,15 @@ const crossMarkBtn = document.querySelector(".cross-mark");
 const noughtMarkBtn = document.querySelector(".nought-mark");
 const playerNameBtn = document.querySelectorAll(".player-name");
 const botDifficultyBtn = document.querySelectorAll(".bot-difficulty");
+const botDifficulties = ["BOT","EASY", "HARD", "IMPOSSIBLE"];
+
+const rightCard = document.querySelector(".right-card");
+const rightCardBotBtn = rightCard.querySelector(".bot-difficulty");
+
+if (rightCardBotBtn.classList.contains("is-selected")) {
+  rightCardBotBtn.textContent = botDifficulties[1].toUpperCase();
+}
+
 
 function toggleMark(markButton, secondMarkButton){
   markButton.textContent = markButton.textContent.trim() === "X" ? "O" : "X";
@@ -51,6 +60,23 @@ function toggleAvatar(cardButton) {
   }
 }
 
+function toggleBotDifficulty(botButton) {
+  if (!botButton.classList.contains("is-selected")) {
+    botButton.textContent = botDifficulties[0].toUpperCase();
+  } else {
+    const currentDifficulty = botButton.textContent.trim().toUpperCase();
+    const currentIndex = botDifficulties.indexOf(currentDifficulty);
+    const nextIndex = currentIndex === -1 || currentIndex === botDifficulties.length - 1 ? 1 : currentIndex + 1;
+    botButton.textContent = botDifficulties[nextIndex].toUpperCase();
+
+  }
+
+}
+
+function togglePlayerNameInput(playerButton, botButton) {
+  toggleBotDifficulty(botButton);
+}
+
 function setupEventListener(){
   crossMarkBtn.addEventListener("click", (event) => {
     toggleMark(event.currentTarget, noughtMarkBtn);
@@ -61,19 +87,21 @@ function setupEventListener(){
   playerNameBtn.forEach((playerButton) => {
     playerButton.addEventListener("click", (event) => {
       const wasSelected = event.currentTarget.classList.contains("is-selected");
-      toggleSelected(event.currentTarget, event.currentTarget.nextElementSibling);
       if (!wasSelected) {
+        toggleSelected(event.currentTarget, event.currentTarget.nextElementSibling);
         toggleAvatar(event.currentTarget);
       }
+      togglePlayerNameInput(event.currentTarget, event.currentTarget.nextElementSibling);
     });
   });
   botDifficultyBtn.forEach((botButton) => {
     botButton.addEventListener("click", (event) => {
       const wasSelected = event.currentTarget.classList.contains("is-selected");
-      toggleSelected(event.currentTarget, event.currentTarget.previousElementSibling);
       if (!wasSelected) {
+        toggleSelected(event.currentTarget, event.currentTarget.previousElementSibling);
         toggleAvatar(event.currentTarget);
       }
+      toggleBotDifficulty(event.currentTarget);
     });
   });
 }
