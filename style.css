@@ -11,6 +11,7 @@
   --hover-color: #d62828;
   --title-color: #1c1c1f;
   --versus-color: #1c1c1f;
+  --avatar-speed-transition: 450ms;
 }
 
 *,
@@ -161,26 +162,27 @@ body {
       margin-top: 5px;
     }
 
+    .card-avatar {
+      background-color: #202022;
+    }
+
     .avatar {
       width: 100%;
       height: auto;
       object-fit: contain;
       display: block;
       transition: 
-        opacity 320ms ease, 
-        transform 320ms ease,
-        filter 320ms ease;
+        opacity var(--avatar-speed-transition) ease-out, 
+        transform var(--avatar-speed-transition) ease-out,
+        filter var(--avatar-speed-transition) ease-out;
 
       &.is-changing {
         opacity: 0;
-        transform: translateX(-14px) scale(0.94) rotate(-2deg);
-        filter: blur(4px);
+        filter: blur(6px);
       }
-
       &.is-entering {
         opacity: 0;
-        transform:: translateX(14px) scale(0.94) rotate(2deg);
-        filter: blur(4px);
+        filter: blur(6px);
       }
     }
 
@@ -218,8 +220,6 @@ body {
 
 
     }
-
-
     
   }
 

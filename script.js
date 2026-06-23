@@ -20,6 +20,7 @@ function toggleAvatar(cardButton) {
   const card = cardButton.closest(".card-player");
   const avatar = card.querySelector(".avatar");
   avatar.classList.add("is-changing");
+  const transitionTimeOut = 450;
 
   if (cardButton.classList.contains("player-name")) {
     setTimeout(() => {
@@ -33,7 +34,7 @@ function toggleAvatar(cardButton) {
 
       }, {once: true});
       avatar.src = "img/player.gif";
-    }, 320);
+    }, transitionTimeOut);
   } if(cardButton.classList.contains("bot-difficulty")) {
     setTimeout(() => {
       avatar.addEventListener("load", () => {
@@ -46,7 +47,7 @@ function toggleAvatar(cardButton) {
 
       }, {once: true});
       avatar.src = "img/bot.gif";
-    }, 320);
+    }, transitionTimeOut);
   }
 }
 
