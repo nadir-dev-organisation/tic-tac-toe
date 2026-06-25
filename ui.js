@@ -12,28 +12,6 @@ const cardContainer = document.querySelector(".card-container");
 const gameSetupContainer = document.querySelector(".game-setup-container");
 const gameContainer = document.querySelector(".game-container");
 
-function showStartGameButton(delay = 500) {
-  setTimeout(() => {
-    startGameBtn.classList.remove("is-hidden");
-    cardContainer.classList.add("has-start-game");
-  }, delay);
-}
-
-function showGame() {
-  const transitionDuration = 450;
-
-  gameSetupContainer.classList.add("is-leaving");
-
-  setTimeout(() => {
-    gameSetupContainer.classList.add("is-hidden");
-    gameContainer.classList.add("is-rendered");
-
-    requestAnimationFrame(() => {
-      gameContainer.classList.add("is-visible");
-    });
-  }, transitionDuration);
-}
-
 if (rightCardBotBtn.classList.contains("is-selected")) {
   rightCardBotBtn.textContent = botDifficulties[1].toUpperCase();
 }
@@ -151,6 +129,57 @@ function replaceInputWithButton(input) {
   newPlayerButton.addEventListener("click", handlePlayerNameClick);
 }
 
+function showStartGameButton(delay = 500) {
+  setTimeout(() => {
+    startGameBtn.classList.remove("is-hidden");
+    cardContainer.classList.add("has-start-game");
+  }, delay);
+}
+
+function showGame() {
+  const transitionDuration = 450;
+
+  gameSetupContainer.classList.add("is-leaving");
+
+  setTimeout(() => {
+    gameSetupContainer.classList.add("is-hidden");
+    gameContainer.classList.add("is-rendered");
+
+    requestAnimationFrame(() => {
+      gameContainer.classList.add("is-visible");
+    });
+  }, transitionDuration);
+}
+
+function getPlayerFromCard(card) {
+  const markBtn = card.querySelector(".player-mark");
+  const playerBtn = card.querySelector(".player-name");
+  const botBtn = card.querySelector(".bot-difficulty");
+
+  const isBot = botBtn.classList.contains("is-selected");
+
+  const playerName = isBot 
+    ? botBtn.textContent.trim().toUpperCase()
+    : playerBtn.textContent.trim().toUpperCase();
+  const playerMark = markBtn.textContent.trim();
+
+  return createPlayer(playerName, playerMark);
+}
+
+function handleStartGame() {
+  const leftCard = document.querySelector(".left-card");
+  const rightCard = document.querySelector(".right-card");
+
+  const playerOne = getPlayerFromCard(leftCard);
+  const playerTwo = getPlayerFromCard(rightCard);
+
+  if (playerOne.name === playerTwo.name) {
+    playerTwo.name = playerTwo.name + " two".toUpperCase();
+  }
+
+  showGame();
+}
+
 function setupEventListener(){
   crossMarkBtn.addEventListener("click", (event) => {
     toggleMark(event.currentTarget, noughtMarkBtn);
@@ -171,8 +200,9 @@ function setupEventListener(){
       toggleBotDifficulty(event.currentTarget);
     });
   });
-  startGameBtn.addEventListener("click", showGame);
+  startGameBtn.addEventListener("click", handleStartGame);
 }
 
 setupEventListener();
 showStartGameButton();
+
