@@ -9,12 +9,29 @@ const rightCardBotBtn = rightCard.querySelector(".bot-difficulty");
 
 const startGameBtn = document.querySelector(".start-game");
 const cardContainer = document.querySelector(".card-container");
+const gameSetupContainer = document.querySelector(".game-setup-container");
+const gameContainer = document.querySelector(".game-container");
 
 function showStartGameButton(delay = 500) {
   setTimeout(() => {
     startGameBtn.classList.remove("is-hidden");
     cardContainer.classList.add("has-start-game");
   }, delay);
+}
+
+function showGame() {
+  const transitionDuration = 450;
+
+  gameSetupContainer.classList.add("is-leaving");
+
+  setTimeout(() => {
+    gameSetupContainer.classList.add("is-hidden");
+    gameContainer.classList.add("is-rendered");
+
+    requestAnimationFrame(() => {
+      gameContainer.classList.add("is-visible");
+    });
+  }, transitionDuration);
 }
 
 if (rightCardBotBtn.classList.contains("is-selected")) {
@@ -154,6 +171,7 @@ function setupEventListener(){
       toggleBotDifficulty(event.currentTarget);
     });
   });
+  startGameBtn.addEventListener("click", showGame);
 }
 
 setupEventListener();

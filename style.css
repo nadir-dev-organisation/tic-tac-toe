@@ -41,6 +41,30 @@ body {
       text-shadow: 4px 4px 0 #d62828, 8px 8px 0 #000;
   }
 
+}
+
+.game-setup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  transition:
+    opacity 450ms ease,
+    transform 450ms ease,
+    filter 450ms ease;
+
+  &.is-leaving {
+    opacity: 0;
+    transform: translateY(-24px) scale(0.96);
+    filter: blur(6px);
+    pointer-events: none;
+  }
+
+  &.is-hidden {
+    display: none;
+  }
+
+
   .card-container {
     width: min(100%, 1100px);
     display: grid;
@@ -255,4 +279,31 @@ body {
     
   }
 
+}
+
+.game-container {
+  display: none;
+  opacity: 0;
+  transform: translateY(24px) scale(0.96);
+  filter: blur(6px);
+  pointer-events: none;
+  transition:
+    opacity 450ms ease,
+    transform 450ms ease,
+    filter 450ms ease;
+
+  &.is-rendered {
+    display: block;
+  }
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+    pointer-events: auto;
+  }
+}
+
+.game-container {
+  display: hidden;
 }
