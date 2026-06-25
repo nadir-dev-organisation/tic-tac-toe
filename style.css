@@ -24,6 +24,10 @@
 body {
   min-height: 100vh;
   line-height: 1.5;
+  background-image: url('img/tic-tac-toe-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   font-family: "Act Of Rejection", sans-serif;
   display: flex;
   justify-content: center;
