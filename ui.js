@@ -191,7 +191,9 @@ function handleStartGame() {
 
 function displayGameInfo() {
   const turnMarker = document.querySelector(".turn-marker");
+  const roundNumber = document.querySelector(".round-number");
   turnMarker.textContent = game.getCurrentPlayer().marker;
+  roundNumber.textContent = game.getRound();
 }
 
 function displayeBoard() {
