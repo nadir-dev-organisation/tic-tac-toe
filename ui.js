@@ -12,6 +12,9 @@ const cardContainer = document.querySelector(".card-container");
 const gameSetupContainer = document.querySelector(".game-setup-container");
 const gameContainer = document.querySelector(".game-container");
 
+const board = Gameboard;
+const game = GameController;
+
 if (rightCardBotBtn.classList.contains("is-selected")) {
   rightCardBotBtn.textContent = botDifficulties[1].toUpperCase();
 }
@@ -163,7 +166,7 @@ function getPlayerFromCard(card) {
     : playerBtn.textContent.trim().toUpperCase();
   const playerMark = markBtn.textContent.trim();
 
-  return createPlayer(playerName, playerMark);
+  return game.createPlayer(playerName, playerMark);
 }
 
 function handleStartGame() {
@@ -177,7 +180,40 @@ function handleStartGame() {
     playerTwo.name = playerTwo.name + " two".toUpperCase();
   }
 
+  game.players.push(playerOne);
+  game.players.push(playerTwo);
+
+  game.setCurrentPlayer(0);
+
+  displayeBoard();
   showGame();
+}
+
+function displayGameInfo() {
+  const turnMarker = document.querySelector(".turn-marker");
+  turnMarker.textContent = game.getCurrentPlayer().marker;
+}
+
+function displayeBoard() {
+  const boardContainer = document.querySelector(".board-container");
+  boardContainer.textContent = "";
+  displayGameInfo();
+
+  board.getBoard().forEach((cell, index) => {
+    const boardCell = document.createElement("button");
+    boardCell.classList.add("board-cell");
+    boardCell.textContent = cell ?? "";
+    boardCell.type = "button";
+
+    boardCell.addEventListener("click", () => {
+      game.playRound(index);
+      displayeBoard();
+    });
+
+    boardContainer.appendChild(boardCell);
+
+  });
+  
 }
 
 function setupEventListener(){

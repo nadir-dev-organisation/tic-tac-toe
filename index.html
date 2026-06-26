@@ -10,7 +10,6 @@
   <title>Tic Tac Toe</title>
 </head>
 <body>
-
   <main class="main-content">
     <h1 class="title">Tic Tac Toe</h1>
     <div class="game-setup-container">
@@ -46,8 +45,41 @@
       </div>
 
     </div>
-    <div class="game-container">
-      Game
+    <div class="game-container is-rendered">
+      <div class="card-player left-card">
+        <div class="card-top">
+          <span class="game-player-name">Player</span>
+          <span class="game-player-mark">X</span>
+        </div>
+        <div class="card-avatar">
+          <img src="img/player.gif" alt="Player image" class="avatar">
+        </div>
+        <div class="card-bottom">
+          <span class="player-score-title">Score</span>
+          <span class="player-score-number">0</span>
+        </div>
+      </div>
+      <div class="board-panel">
+        <div class="turn-badge">
+          <span class="turn-marker"></span>
+          <span class="turn-text">Your turn</span>
+        </div>
+        <div class="board-container"></div>
+      </div>
+      <div class="card-player right-card">
+        <div class="card-top">
+          <span class="game-player-name">Player</span>
+          <span class="game-player-mark">O</span>
+        </div>
+        <div class="card-avatar">
+          <img src="img/bot.gif" alt="Player image" class="avatar">
+        </div>
+        <div class="card-bottom">
+          <span class="player-score-title">Score</span>
+          <span class="player-score-number">0</span>
+        </div>
+      </div>
+
     </div>
   </main>
   
