@@ -164,9 +164,14 @@ function getPlayerFromCard(card) {
   const playerName = isBot 
     ? botBtn.textContent.trim().toUpperCase()
     : playerBtn.textContent.trim().toUpperCase();
+
   const playerMark = markBtn.textContent.trim();
 
-  return game.createPlayer(playerName, playerMark);
+  const playerAvatar = isBot
+    ? "img/bot.gif"
+    : "img/player.gif"
+
+  return game.createPlayer(playerName, playerMark, playerAvatar);
 }
 
 function handleStartGame() {
@@ -180,9 +185,27 @@ function handleStartGame() {
     playerTwo.name = playerTwo.name + " two".toUpperCase();
   }
 
+  const gameLeftCard = document.querySelector(".game-left-card");
+  const gameRightCard = document.querySelector(".game-right-card");
+
+  const playerOneName = gameLeftCard.querySelector(".game-player-name");
+  const playerOneMark = gameLeftCard.querySelector(".game-player-mark");
+  const playerOneAvatar = gameLeftCard.querySelector(".avatar");
+
+  playerOneName.textContent = playerOne.name;
+  playerOneMark.textContent = playerOne.mark;
+  playerOneAvatar.src = playerOne.avatar;
+
+  const playerTwoName = gameRightCard.querySelector(".game-player-name");
+  const playerTwoMark = gameRightCard.querySelector(".game-player-mark");
+  const playerTwoAvatar = gameRightCard.querySelector(".avatar");
+
+  playerTwoName.textContent = playerTwo.name;
+  playerTwoMark.textContent = playerTwo.mark;
+  playerTwoAvatar.src = playerTwo.avatar;
+
   game.players.push(playerOne);
   game.players.push(playerTwo);
-
   game.setCurrentPlayer(0);
 
   displayeBoard();
@@ -213,9 +236,7 @@ function displayeBoard() {
     });
 
     boardContainer.appendChild(boardCell);
-
   });
-  
 }
 
 function setupEventListener(){

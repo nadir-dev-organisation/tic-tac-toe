@@ -20,7 +20,7 @@ const Gameboard = (() => {
 
 const GameController = (() => {
 
-  const createPlayer = (name, marker) => { return { name, marker } };
+  const createPlayer = (name, mark, avatar) => { return { name, mark, avatar } };
 
   const players = [];
 
