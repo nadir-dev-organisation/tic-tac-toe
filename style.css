@@ -366,22 +366,33 @@ body {
       }
     }
 
-    .player-mark, .bot-difficulty, .player-name {
-      appearance: none;
-      border: 0;
-      background: transparent;
-      font: inherit;
-      color: inherit;
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 90%;
+      padding-top: 0.8rem;
+      padding-bottom: 0.8rem;
 
-      &:hover, &.is-selected {
-        color: var(--hover-color);
+      .game-player-name, .game-player-mark {
+        font-size: 2rem;
+        font-weight: 700;
       }
-    }
 
-    .player-mark {
-      font-weight: 700;
-      font-size: 2rem;
-      margin-top: 5px;
+      .left-mark, .right-mark {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        width: 30%;
+        color: #ffff;
+        text-align: center;
+      }
+      .left-mark {
+        background-image: url(img/first-player-mark-bg.png);
+      }
+      .right-mark {
+        background-image: url(img/second-player-mark-bg.png);
+      }
     }
 
     .card-avatar {
@@ -409,39 +420,21 @@ body {
     }
 
     .card-bottom {
-      width: 100%;
+      width: 90%;
       display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: space-around;
+      padding-top: 1rem;
 
-      .player-name, .bot-difficulty {
-        font-size: 1.5rem;
+      .player-score-title, .player-score-number {
+        font-size: 2.5rem;
         font-weight: 700;
-        flex: 1;
-        transition: flex 200ms ease;
-        line-height: 2;
-
-        &:hover, &:active, &.is-selected {
-          flex: 2;
-        }
+        color: var(--hover-color);
       }
 
-      .player-name {
-        &:hover, &:active, &.is-selected {
-          border-right: 1px solid #dcdcdc;
-          box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.12);
-        }
-      }
-
-      .bot-difficulty {
-        &:hover, &:active, &.is-selected {
-          border-left: 1px solid #dcdcdc;
-          box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.12);
-        }
-      }
-
-      .player-name-input {
-        text-align: center;
-        min-width: 0;
+      .player-score-title {
+        height: 2.7rem;
       }
 
     }
