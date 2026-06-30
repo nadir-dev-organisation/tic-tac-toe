@@ -1,21 +1,17 @@
-// function createPlayer(name, marker) {
-//   return {name, marker};
-// }
-
 const Gameboard = (() => {
   let board = Array(9).fill(null);
 
   const getBoard = () => board;
-  const placeMarker = (index, marker) => {
+  const placeMark = (index, mark) => {
     if (board[index] !== null) return false;
     
-    board[index] = marker;
+    board[index] = mark;
     return true;
   };
 
   const resetBoard = () => { board = Array(9).fill(null); };
 
-  return { getBoard, placeMarker, resetBoard };
+  return { getBoard, placeMark, resetBoard };
 })();
 
 const GameController = (() => {
@@ -34,7 +30,7 @@ const GameController = (() => {
     currentPlayer = currentPlayer === players[0] ? players[1] : players[0];
   };
   const playRound = (index) => {
-    const markerWasPlaced = Gameboard.placeMarker(index, currentPlayer.marker);
+    const markerWasPlaced = Gameboard.placeMark(index, currentPlayer.mark);
 
     if(!markerWasPlaced) return false;
 

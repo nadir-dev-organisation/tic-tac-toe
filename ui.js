@@ -12,6 +12,10 @@ const cardContainer = document.querySelector(".card-container");
 const gameSetupContainer = document.querySelector(".game-setup-container");
 const gameContainer = document.querySelector(".game-container");
 
+const resetScoreBtn = document.querySelector(".reset-score-button");
+const backToHomeBtn = document.querySelector(".back-button");
+
+
 const board = Gameboard;
 const game = GameController;
 
@@ -215,7 +219,7 @@ function handleStartGame() {
 function displayGameInfo() {
   const turnMarker = document.querySelector(".turn-marker");
   const roundNumber = document.querySelector(".round-number");
-  turnMarker.textContent = game.getCurrentPlayer().marker;
+  turnMarker.textContent = game.getCurrentPlayer().mark;
   roundNumber.textContent = game.getRound();
 }
 
@@ -260,6 +264,10 @@ function setupEventListener(){
     });
   });
   startGameBtn.addEventListener("click", handleStartGame);
+  resetScoreBtn.addEventListener("click", () => {
+    game.resetGame()
+    displayeBoard();
+  });
 }
 
 setupEventListener();
