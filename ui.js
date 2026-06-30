@@ -235,7 +235,13 @@ function displayeBoard() {
     boardCell.type = "button";
 
     boardCell.addEventListener("click", () => {
-      game.playRound(index);
+
+      const roundResult = game.playRound(index);
+
+      if (typeof roundResult === "string") {
+        console.log("roundResult : ", roundResult);
+      }
+
       displayeBoard();
     });
 
