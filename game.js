@@ -78,9 +78,13 @@ const GameController = (() => {
   const getWinner = () => {
     const [playerOne, playerTwo] = players;
 
-    return playerOne.score > playerTwo.score
-      ? playerOne
-      : playerTwo;
+    if (playerOne.score === playerTwo.score) {
+      return "draw";
+    } else {
+      return playerOne.score > playerTwo.score
+        ? playerOne
+        : playerTwo;
+    }
   }
 
   const switchRound = (message) => {
@@ -93,7 +97,11 @@ const GameController = (() => {
 
     } else {
       const winner = getWinner();
-      return `The game is finished, ${winner.name} won!`;
+      if (typeof winner === "string") {
+        return "The game is finished, it's a draw!"
+      } else {
+        return `The game is finished, ${winner.name} won!`;
+      }
     }
   }
 
