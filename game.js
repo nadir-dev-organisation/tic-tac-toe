@@ -71,6 +71,10 @@ const GameController = (() => {
   const switchPlayerTurn = () => {
     currentPlayer = currentPlayer === players[0] ? players[1] : players[0];
   };
+  const getPlayerScore = (playerName) => {
+    const player = players.find((playerToFind) => playerToFind.name === playerName);
+    return player.score;
+  }
 
   const switchRound = (message) => {
 
@@ -129,5 +133,5 @@ const GameController = (() => {
     round = 1;
   }
 
-  return { createPlayer, players, setCurrentPlayer, getCurrentPlayer, getRound, playRound, resetGame, switchRound };
+  return { createPlayer, players, setCurrentPlayer, getCurrentPlayer, getRound, playRound, resetGame, switchRound, getPlayerScore };
 })();

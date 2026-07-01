@@ -221,6 +221,16 @@ function displayGameInfo() {
   const roundNumber = document.querySelector(".round-number");
   turnMarker.textContent = game.getCurrentPlayer().mark;
   roundNumber.textContent = game.getRound();
+
+  const gameLeftCard = document.querySelector(".game-left-card");
+  const gameRightCard = document.querySelector(".game-right-card");
+
+  const leftPlayerName = gameLeftCard.querySelector(".game-player-name").textContent.trim();
+  const leftPlayerScore = gameLeftCard.querySelector(".player-score-number");
+  leftPlayerScore.textContent = game.getPlayerScore(leftPlayerName);
+
+
+
 }
 
 function displayeBoard() {
