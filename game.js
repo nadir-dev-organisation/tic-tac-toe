@@ -75,17 +75,25 @@ const GameController = (() => {
     const player = players.find((playerToFind) => playerToFind.name === playerName);
     return player.score;
   }
+  const getWinner = () => {
+    const [playerOne, playerTwo] = players;
+
+    return playerOne.score > playerTwo.score
+      ? playerOne
+      : playerTwo;
+  }
 
   const switchRound = (message) => {
 
-    if (round < 3) {
+    incRound();
+
+    if (round <= 3) {
       Gameboard.resetBoard();
-      incRound();
       return message;
 
     } else {
-      resetGame();
-      return "The game is finished!";
+      const winner = getWinner();
+      return `The game is finished, ${winner.name} won!`;
     }
   }
 
@@ -134,5 +142,5 @@ const GameController = (() => {
     round = 1;
   }
 
-  return { createPlayer, players, setCurrentPlayer, getCurrentPlayer, getRound, playRound, resetGame, switchRound, getPlayerScore };
+  return { createPlayer, players, setCurrentPlayer, getCurrentPlayer, getRound, playRound, resetGame, switchRound, getPlayerScore, getWinner };
 })();

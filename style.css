@@ -593,12 +593,12 @@ body {
 
 }
 
-.round-dialog {
+.round-dialog, .game-dialog {
   position: fixed;
   inset: 0;
   margin: auto;
-  width: 50vw;
-  height: 25vw;
+  width: 30vw;
+  height: 13vw;
   border: 2px solid #111;
   border-radius: 12px;
   background: #fff;
@@ -638,6 +638,7 @@ body {
       display: flex;
       width: 100%;
       justify-content: end;
+
       .round-button {
         border: 1px solid #2d2d2f;
         border-radius: 14px;
@@ -660,8 +661,6 @@ body {
     }
   }
 
-
-
   @keyframes popup-in {
     from {
       opacity: 0;
@@ -673,4 +672,39 @@ body {
     }
   }
 
+}
+
+.game-dialog {
+  .game-form {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+
+  }
+  .dialog-content {
+    .game-title {
+      color: var(--hover-color);
+      font-weight: 700;
+      font-size: 3rem;
+    }
+    .go-home-button, .new-game-button {
+      border: 1px solid #2d2d2f;
+      border-radius: 14px;
+      min-width: 5rem;
+      padding: 0 1rem;
+      background: transparent;
+      font-family: inherit;
+      font-size: 1rem;
+      cursor: pointer;
+      min-height: 32px;
+      line-height: 1;
+
+      &:hover {
+        color: #ffffff;
+        border: 1px solid var(--hover-color);
+        background-color: var(--hover-color);
+      }
+
+    }
+  }
 }

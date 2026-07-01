@@ -245,13 +245,23 @@ function displayResultDialog(result) {
   const round = game.getRound();
 
   if (round <= 3) {
-    const dialog = document.querySelector(".round-dialog");
-    const roundMessage = dialog.querySelector(".round-message");
+    const roundDialog = document.querySelector(".round-dialog");
+    const roundMessage = roundDialog.querySelector(".round-message");
     roundMessage.textContent = result;
 
     if (typeof result === "string") {
-      dialog.showModal();
+      roundDialog.showModal();
     }
+
+  } else {
+    const gameDialog = document.querySelector(".game-dialog");
+    const gameMessage = gameDialog.querySelector(".game-message");
+    gameMessage.textContent = result;
+
+    if (typeof result === "string") {
+      gameDialog.showModal();
+    }
+
   }
 
 }
