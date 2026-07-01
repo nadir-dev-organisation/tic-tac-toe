@@ -592,3 +592,85 @@ body {
   }
 
 }
+
+.round-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: 50vw;
+  height: 25vw;
+  border: 2px solid #111;
+  border-radius: 12px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 
+    8px 8px 0 #d62828
+    14px 14px 0 #111;
+  
+
+  &[open] {
+    animation: popup-in 250ms ease-out;
+  }
+
+  &::backdrop {
+    background: rgb(0 0 0 / 0.65);
+    backdrop-filter: blur(3px);
+  }
+
+  .dialog-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    .round-title {
+      color: var(--hover-color);
+      font-weight: 700;
+      font-size: 3rem;
+    }
+
+    .round-message {
+      font-size: 1.3rem;
+    }
+
+    .round-form {
+      display: flex;
+      width: 100%;
+      justify-content: end;
+      .round-button {
+        border: 1px solid #2d2d2f;
+        border-radius: 14px;
+        min-width: 5rem;
+        padding: 0 1rem;
+        background: transparent;
+        font-family: inherit;
+        font-size: 1rem;
+        cursor: pointer;
+        min-height: 32px;
+        line-height: 1;
+
+        &:hover {
+          color: #ffffff;
+          border: 1px solid var(--hover-color);
+          background-color: var(--hover-color);
+        }
+      }
+
+    }
+  }
+
+
+
+  @keyframes popup-in {
+    from {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+}

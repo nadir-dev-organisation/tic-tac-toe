@@ -98,6 +98,7 @@ const GameController = (() => {
 
     if (!isWinner) {
       switchPlayerTurn();
+      return true;
     }
 
     else if (isWinner === "Full") {

@@ -240,6 +240,22 @@ function displayGameInfo() {
 
 }
 
+function displayResultDialog(result) {
+
+  const round = game.getRound();
+
+  if (round <= 3) {
+    const dialog = document.querySelector(".round-dialog");
+    const roundMessage = dialog.querySelector(".round-message");
+    roundMessage.textContent = result;
+
+    if (typeof result === "string") {
+      dialog.showModal();
+    }
+  }
+
+}
+
 function displayeBoard() {
   const boardContainer = document.querySelector(".board-container");
   boardContainer.textContent = "";
@@ -255,9 +271,8 @@ function displayeBoard() {
 
       const roundResult = game.playRound(index);
 
-      if (typeof roundResult === "string") {
-        console.log("roundResult : ", roundResult);
-      }
+      displayResultDialog(roundResult);
+
 
       displayeBoard();
     });
