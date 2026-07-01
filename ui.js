@@ -229,6 +229,13 @@ function displayGameInfo() {
   const leftPlayerScore = gameLeftCard.querySelector(".player-score-number");
   leftPlayerScore.textContent = game.getPlayerScore(leftPlayerName);
 
+  const rightPlayerName = gameRightCard.querySelector(".game-player-name").textContent.trim();
+  const rightPlayerScore = gameRightCard.querySelector(".player-score-number");
+  rightPlayerScore.textContent = game.getPlayerScore(rightPlayerName);
+
+
+
+
 
 
 }
